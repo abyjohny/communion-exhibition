@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Holy Communion - An Interactive Story</title>
+    <!-- Google Fonts: Cinzel for headers, Playfair Display for quotes, Inter for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+
+    <!-- Scroll Indicator (Floating Dots) -->
+    <div class="scroll-nav">
+        <div class="scroll-dot active" data-section="0"><span class="tooltip">Welcome</span></div>
+        <div class="scroll-dot" data-section="1"><span class="tooltip">Zacchaeus</span></div>
+        <div class="scroll-dot" data-section="2"><span class="tooltip">The Eucharist</span></div>
+        <div class="scroll-dot" data-section="3"><span class="tooltip">Saint Patrick</span></div>
+        <div class="scroll-dot" data-section="4"><span class="tooltip">Saint Brigid</span></div>
+    </div>
+
+    <!-- Scroll Container -->
+    <main class="story-container">
+        
+        <!-- SECTION 1: Welcome / Hero -->
+        <section class="story-section active" id="sec-1">
+            <div class="light-rays">
+                <div class="light-ray"></div>
+                <div class="light-ray"></div>
+                <div class="light-ray"></div>
+            </div>
+            <div class="dust-particles" id="hero-dust"></div>
+            <div class="section-bg-gradient"></div>
+            <div class="section-content hero-content">
+                <div class="cross-icon scroll-reveal delay-1">
+                    <div class="cross-v"></div>
+                    <div class="cross-h"></div>
+                </div>
+                <h1 class="story-title scroll-reveal delay-2">First Holy Communion</h1>
+                <p class="story-subtitle scroll-reveal delay-3">An Interactive Journey of Faith</p>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Zacchaeus Video -->
+        <section class="story-section" id="sec-2">
+            <div class="section-bg-gradient"></div>
+            <div class="section-content video-content">
+                <h2 class="section-title scroll-reveal">Zacchaeus Meets Jesus</h2>
+                <p class="section-desc scroll-reveal delay-1">Explore the story of a man who climbed a tree to see Jesus, and found his life transformed forever.</p>
+                
+                <div class="media-frame-wrapper scroll-reveal delay-2">
+                    <div class="ambient-glow" id="video-glow"></div>
+                    <div class="media-frame video-frame">
+                        <iframe id="zacchaeus-video" src="https://www.youtube.com/embed/5BjtbJFz2ug?enablejsapi=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: The Holy Eucharist -->
+        <section class="story-section" id="sec-3">
+            <div class="section-bg-gradient"></div>
+            <div class="section-content communion-content">
+                <h2 class="section-title scroll-reveal">The Holy Eucharist</h2>
+                
+                <div class="grid-layout">
+                    <!-- Left: Jesus and Wine GIF -->
+                    <div class="grid-left scroll-reveal delay-1">
+                        <div class="media-frame-wrapper">
+                            <div class="ambient-glow" id="communion-glow"></div>
+                            <div class="arch-frame">
+                                <div class="glass-overlay"></div>
+                                <div class="spotlight-glow"></div>
+                                <img src="jesus_wine.gif" alt="Lord Jesus and Wine Communion Image" class="communion-gif">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Scripture Text -->
+                    <div class="grid-right scroll-reveal delay-2">
+                        <div class="scripture-container">
+                            <div class="celtic-corner top-left"></div>
+                            <div class="celtic-corner top-right"></div>
+                            <div class="celtic-corner bottom-left"></div>
+                            <div class="celtic-corner bottom-right"></div>
+                            
+                            <p class="scripture-quote">“<span class="drop-cap">I</span> am the bread of life. Whoever comes to me will never go hungry, and whoever believes in me will never be thirsty.”</p>
+                            <p class="scripture-citation">— John 6:35</p>
+                            <div class="celtic-divider"></div>
+                            <p class="scripture-reflection">In the Holy Eucharist, we receive the body and blood of Jesus Christ. This sacrament unites us with Him in love, strengthens our soul, and nourishes our faith for eternal life.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Saint Patrick -->
+        <section class="story-section" id="sec-4">
+            <div class="section-bg-gradient"></div>
+            <div class="section-content patrick-content">
+                <h2 class="section-title scroll-reveal">Saint Patrick, Apostle of Ireland</h2>
+                
+                <div class="grid-layout">
+                    <!-- Left: Interactive Portrait -->
+                    <div class="grid-left scroll-reveal delay-1">
+                        <div class="interactive-portrait-wrapper">
+                            <div class="ambient-glow" id="patrick-glow"></div>
+                            <div class="portrait-container gallery-frame">
+                                <div class="glass-overlay"></div>
+                                <div class="spotlight-glow"></div>
+                                <img src="st_patrick.png" alt="Saint Patrick Portrait" class="patrick-img">
+                                
+                                <!-- Hotspot: Mitre (Bishop's Hat) -->
+                                <div class="hotspot-trigger" id="hs-mitre" style="top: 2%; left: 38%; width: 24%; height: 22%;"></div>
+                                
+                                <!-- Hotspot: Staff / Crosier -->
+                                <div class="hotspot-trigger" id="hs-staff" style="top: 16%; left: 6%; width: 18%; height: 72%;"></div>
+                                
+                                <!-- Hotspot: Shamrock -->
+                                <div class="hotspot-trigger" id="hs-shamrock" style="top: 48%; left: 72%; width: 22%; height: 22%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Story Narrative (Website Style) -->
+                    <div class="grid-right scroll-reveal delay-2">
+                        <div class="narrative-container">
+                            
+                            <!-- Narrative: Default Instruction -->
+                            <div class="interactive-card active" id="card-default">
+                                <h3 class="narrative-title">Spiritual Symbols</h3>
+                                <p class="narrative-text">Saint Patrick utilized elements of nature and church liturgy to teach the Irish people about God.</p>
+                                <p class="narrative-instruction">Click directly on his Mitre, Staff, or Shamrock inside the portrait to explore their spiritual meanings.</p>
+                            </div>
+                            
+                            <!-- Narrative: Mitre -->
+                            <div class="interactive-card" id="card-mitre">
+                                <div class="narrative-header">
+                                    <img src="mitre_icon.png" alt="Mitre Icon" class="narrative-icon">
+                                    <h3 class="narrative-title">The Bishop's Mitre</h3>
+                                </div>
+                                <p class="narrative-text">The mitre is the liturgical headdress worn by bishops. It represents St. Patrick's apostolic authority and his divine mission to preach, guide, and protect the people of Ireland in the Christian faith.</p>
+                                <span class="back-link card-back-btn">← Back to Overview</span>
+                            </div>
+                            
+                            <!-- Narrative: Staff -->
+                            <div class="interactive-card" id="card-staff">
+                                <div class="narrative-header">
+                                    <img src="staff_icon.png" alt="Staff Icon" class="narrative-icon">
+                                    <h3 class="narrative-title">The Bishop's Staff</h3>
+                                </div>
+                                <p class="narrative-text">The pastoral staff, or crosier, represents St. Patrick's role as a spiritual shepherd. According to Irish legend, he used his staff to drive the snakes of Ireland into the sea, symbolizing the banishment of evil.</p>
+                                <span class="back-link card-back-btn">← Back to Overview</span>
+                            </div>
+                            
+                            <!-- Narrative: Shamrock -->
+                            <div class="interactive-card" id="card-shamrock">
+                                <div class="narrative-header">
+                                    <img src="shamrock_icon.png" alt="Shamrock Icon" class="narrative-icon">
+                                    <h3 class="narrative-title">The Shamrock</h3>
+                                </div>
+                                <p class="narrative-text">Saint Patrick famously picked the three-leaved shamrock from the Irish soil to explain the mystery of the Holy Trinity. He showed how the Father, the Son, and the Holy Spirit are three distinct persons in one single God, just as three leaves form one single clover.</p>
+                                <span class="back-link card-back-btn">← Back to Overview</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: Saint Brigid -->
+        <section class="story-section" id="sec-5">
+            <div class="section-bg-gradient" id="bg-brigid"></div>
+            <div class="section-content brigid-content">
+                <h2 class="section-title scroll-reveal">Saint Brigid of Kildare</h2>
+                
+                <div class="grid-layout">
+                    <!-- Left: Interactive Portrait -->
+                    <div class="grid-left scroll-reveal delay-1">
+                        <div class="interactive-portrait-wrapper">
+                            <div class="ambient-glow" id="brigid-glow"></div>
+                            <div class="portrait-container gallery-frame" id="brigid-portrait">
+                                <div class="glass-overlay"></div>
+                                <div class="spotlight-glow"></div>
+                                <img src="st_brigid.png" alt="Saint Brigid Portrait" class="patrick-img" id="brigid-img">
+                                
+                                <!-- Hotspot: St. Brigid Cross -->
+                                <div class="hotspot-trigger" id="hs-brigid-cross" style="top: 42%; left: 38%; width: 22%; height: 22%;"></div>
+                                
+                                <!-- Hotspot: Abbess Staff -->
+                                <div class="hotspot-trigger" id="hs-brigid-staff" style="top: 6%; left: 68%; width: 14%; height: 60%;"></div>
+                                
+                                <!-- Hotspot: Perpetual Flame -->
+                                <div class="hotspot-trigger" id="hs-brigid-flame" style="top: 60%; left: 12%; width: 18%; height: 18%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Story Narrative (Website Style) -->
+                    <div class="grid-right scroll-reveal delay-2">
+                        <div class="narrative-container">
+                            
+                            <!-- Narrative: Default Instruction -->
+                            <div class="interactive-card active" id="card-brigid-default">
+                                <h3 class="narrative-title">Spiritual Symbols</h3>
+                                <p class="narrative-text">Saint Brigid is one of Ireland's patron saints, celebrated for her wisdom, charity, and deep love for God's creation.</p>
+                                <p class="narrative-instruction">Click directly on her Woven Cross, Abbess Staff, or the Perpetual Flame inside her portrait to explore their spiritual meanings.</p>
+                            </div>
+                            
+                            <!-- Narrative: Brigid Cross -->
+                            <div class="interactive-card" id="card-brigid-cross">
+                                <div class="narrative-header">
+                                    <img src="brigid_cross_icon.png" alt="Brigid Cross Icon" class="narrative-icon">
+                                    <h3 class="narrative-title">St. Brigid's Cross</h3>
+                                </div>
+                                <p class="narrative-text">Woven from straw rushes by Brigid at the deathbed of a pagan chieftain, this unique cross became a powerful symbol of faith. According to tradition, placing this cross in a home brings God's peace, protection, and blessing.</p>
+                                <span class="back-link card-back-btn">← Back to Overview</span>
+                            </div>
+                            
+                            <!-- Narrative: Abbess Staff -->
+                            <div class="interactive-card" id="card-brigid-staff">
+                                <div class="narrative-header">
+                                    <img src="brigid_staff_icon.png" alt="Abbess Staff Icon" class="narrative-icon">
+                                    <h3 class="narrative-title">The Abbess Crozier</h3>
+                                </div>
+                                <p class="narrative-text">The crosier represents Brigid's authority as the Abbess of Kildare, where she governed a unique double monastery for both men and women. It symbolizes her pastoral care, leadership, and protection of her flock.</p>
+                                <span class="back-link card-back-btn">← Back to Overview</span>
+                            </div>
+                            
+                            <!-- Narrative: Perpetual Flame -->
+                            <div class="interactive-card" id="card-brigid-flame">
+                                <div class="narrative-header">
+                                    <img src="brigid_flame_icon.png" alt="Perpetual Flame Icon" class="narrative-icon">
+                                    <h3 class="narrative-title">The Perpetual Flame</h3>
+                                </div>
+                                <p class="narrative-text">Brigid and her sisters maintained a perpetual flame at Kildare, representing the warmth of Christian charity and the light of the Holy Spirit. This fire represents Brigid's hospitality and her burning love for the poor.</p>
+                                <span class="back-link card-back-btn">← Back to Overview</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="index.js"></script>
+</body>
+</html>
