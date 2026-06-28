@@ -131,6 +131,10 @@ def compile_all():
     
     brigid_flame_small = os.path.join(workspace, "brigid_flame_icon_small.jpg")
     compress_image(os.path.join(workspace, "brigid_flame_icon.png"), brigid_flame_small, 200)
+
+    # Ending Chalice assets
+    chalice_small = os.path.join(workspace, "chalice_ending_small.jpg")
+    compress_image(os.path.join(workspace, "chalice_ending.png"), chalice_small, 600)
     
     # 2. Encode to Base64
     print("Encoding assets to Base64...")
@@ -144,6 +148,7 @@ def compile_all():
     brigid_cross_b64 = get_base64_uri(brigid_cross_small, "image/jpeg")
     brigid_staff_b64 = get_base64_uri(brigid_staff_small, "image/jpeg")
     brigid_flame_b64 = get_base64_uri(brigid_flame_small, "image/jpeg")
+    chalice_b64 = get_base64_uri(chalice_small, "image/jpeg")
     
     # 3. Read CSS and JS files
     css_path = os.path.join(workspace, "index.css")
@@ -209,6 +214,9 @@ def compile_all():
     ).replace(
         'src="brigid_flame_icon.png"',
         f'src="{brigid_flame_b64}"'
+    ).replace(
+        'src="chalice_ending.png"',
+        f'src="{chalice_b64}"'
     )
     
     # Replace Video element with YouTube embed iframe (adding enablejsapi=1 for JS controls)
@@ -238,7 +246,7 @@ def compile_all():
         
     # Clean up temporary small files to keep workspace clean
     for f in [gif_small_path, st_patrick_small, shamrock_small, staff_small, mitre_small, 
-              st_brigid_small, brigid_cross_small, brigid_staff_small, brigid_flame_small]:
+              st_brigid_small, brigid_cross_small, brigid_staff_small, brigid_flame_small, chalice_small]:
         if os.path.exists(f):
             os.remove(f)
             
