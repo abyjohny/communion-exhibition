@@ -115,10 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // YouTube Iframe controls: play when inside, pause when leaving
                 if (videoIframe && videoIframe.contentWindow) {
-                    if (index === 1) {
-                        // Play video on Slide 2
-                        videoIframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-                    } else {
+                    if (index !== 1) {
                         // Pause video on other slides
                         videoIframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
                     }
