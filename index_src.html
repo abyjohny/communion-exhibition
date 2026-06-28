@@ -21,7 +21,8 @@
         <div class="scroll-dot" data-section="2"><span class="tooltip">The Eucharist</span></div>
         <div class="scroll-dot" data-section="3"><span class="tooltip">Saint Patrick</span></div>
         <div class="scroll-dot" data-section="4"><span class="tooltip">Saint Brigid</span></div>
-        <div class="scroll-dot" data-section="5"><span class="tooltip">Go in Peace</span></div>
+        <div class="scroll-dot" data-section="5"><span class="tooltip">Stained Glass</span></div>
+        <div class="scroll-dot" data-section="6"><span class="tooltip">Go in Peace</span></div>
     </div>
 
     <!-- Scroll Container -->
@@ -249,8 +250,166 @@
             </div>
         </section>
 
-        <!-- SECTION 6: Go in Peace / Thank You -->
+        <!-- SECTION 6: Stained Glass Activity -->
         <section class="story-section" id="sec-6">
+            <div class="section-bg-gradient" id="bg-activity"></div>
+            <div class="section-content activity-content">
+                <h2 class="section-title scroll-reveal">Stained Glass of My Life</h2>
+                <p class="section-desc scroll-reveal delay-1">Reflect on where you see and share God's love. Complete the activity to make the window shine!</p>
+                
+                <div class="grid-layout">
+                    <!-- Left: Interactive Stained Glass SVG -->
+                    <div class="grid-left scroll-reveal delay-2">
+                        <div class="glass-window-wrapper">
+                            <div class="ambient-glow" id="activity-glow"></div>
+                            <div class="glass-window-frame">
+                                <svg id="stained-glass-svg" viewBox="0 0 500 500" width="100%" height="100%">
+                                    <defs>
+                                        <filter id="glass-texture" x="-10%" y="-10%" width="120%" height="120%">
+                                            <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" result="noise" />
+                                            <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" xChannelSelector="R" yChannelSelector="G" />
+                                        </filter>
+                                        
+                                        <!-- Gradients for colored states -->
+                                        <radialGradient id="grad-home" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stop-color="#ffe875" />
+                                            <stop offset="70%" stop-color="#ffb300" />
+                                            <stop offset="100%" stop-color="#e67e00" />
+                                        </radialGradient>
+                                        
+                                        <radialGradient id="grad-school" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stop-color="#b3f0ff" />
+                                            <stop offset="70%" stop-color="#00a8e8" />
+                                            <stop offset="100%" stop-color="#005b94" />
+                                        </radialGradient>
+                                        
+                                        <radialGradient id="grad-pets" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stop-color="#a3ffb4" />
+                                            <stop offset="70%" stop-color="#2ecc71" />
+                                            <stop offset="100%" stop-color="#1b7a43" />
+                                        </radialGradient>
+                                        
+                                        <radialGradient id="grad-church" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stop-color="#f5ccff" />
+                                            <stop offset="70%" stop-color="#9b59b6" />
+                                            <stop offset="100%" stop-color="#5b2c6f" />
+                                        </radialGradient>
+                                        
+                                        <radialGradient id="grad-teachers" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stop-color="#ffb3b3" />
+                                            <stop offset="70%" stop-color="#e74c3c" />
+                                            <stop offset="100%" stop-color="#942b1f" />
+                                        </radialGradient>
+                                        
+                                        <radialGradient id="grad-friends" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stop-color="#ffd5b3" />
+                                            <stop offset="70%" stop-color="#e67e22" />
+                                            <stop offset="100%" stop-color="#a04000" />
+                                        </radialGradient>
+                                    </defs>
+                                    
+                                    <!-- Dynamic glass segments group will be built by JS -->
+                                    <g id="svg-glass-segments" filter="url(#glass-texture)"></g>
+                                    
+                                    <!-- Dynamic text labels group -->
+                                    <g id="svg-glass-labels" pointer-events="none"></g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Reflection Cards & Scoreboard -->
+                    <div class="grid-right scroll-reveal delay-3">
+                        <!-- Scoreboard -->
+                        <div class="activity-scoreboard">
+                            <span class="score-label">Colored Sections:</span>
+                            <span id="score-counter" class="score-counter">0 / 6</span>
+                        </div>
+
+                        <div class="narrative-container" id="activity-cards-container" style="min-height: 380px;">
+                            <!-- Card: Default / Overview -->
+                            <div class="interactive-card active" id="card-activity-default">
+                                <h3 class="narrative-title">Make It Shine</h3>
+                                <p class="narrative-text">This stained glass window has different sections for the special areas of your life. Clicking on a section reveals a reflection prompt. Let's color them with love!</p>
+                                <p class="narrative-instruction">Click any section of the stained glass window on the left to start reflecting and coloring.</p>
+                            </div>
+                            
+                            <!-- Card: Home -->
+                            <div class="interactive-card" id="card-activity-home">
+                                <h3 class="narrative-title text-home" style="color: #ffd700;">My Home</h3>
+                                <p class="narrative-text">How do you show love, kindness, and helpfulness to your family members at home? (e.g. helping with chores, listening, sharing)</p>
+                                <div class="card-action-row" style="margin-bottom: 20px;">
+                                    <button class="color-btn btn-home" data-color-category="home">Color with Love!</button>
+                                </div>
+                                <span class="back-link card-back-btn">← Back to Overview</span>
+                            </div>
+                            
+                            <!-- Card: School -->
+                            <div class="interactive-card" id="card-activity-school">
+                                <h3 class="narrative-title text-school" style="color: #00bfff;">My School</h3>
+                                <p class="narrative-text">What is something kind you can do or say to a classmate who is feeling lonely or left out at school?</p>
+                                <div class="card-action-row" style="margin-bottom: 20px;">
+                                    <button class="color-btn btn-school" data-color-category="school">Color with Kindness!</button>
+                                </div>
+                                <span class="back-link card-back-btn">← Back to Overview</span>
+                            </div>
+                            
+                            <!-- Card: Pets -->
+                            <div class="interactive-card" id="card-activity-pets">
+                                <h3 class="narrative-title text-pets" style="color: #2ecc71;">Pets & Creation</h3>
+                                <p class="narrative-text">How can you care for God's animals and show respect for the beautiful world around us?</p>
+                                <div class="card-action-row" style="margin-bottom: 20px;">
+                                    <button class="color-btn btn-pets" data-color-category="pets">Color with Care!</button>
+                                </div>
+                                <span class="back-link card-back-btn">← Back to Overview</span>
+                            </div>
+                            
+                            <!-- Card: Church -->
+                            <div class="interactive-card" id="card-activity-church">
+                                <h3 class="narrative-title text-church" style="color: #9b59b6;">My Church</h3>
+                                <p class="narrative-text">What is your favorite prayer or song to share with God and your parish family during Mass?</p>
+                                <div class="card-action-row" style="margin-bottom: 20px;">
+                                    <button class="color-btn btn-church" data-color-category="church">Color with Prayer!</button>
+                                </div>
+                                <span class="back-link card-back-btn">← Back to Overview</span>
+                            </div>
+                            
+                            <!-- Card: Teachers -->
+                            <div class="interactive-card" id="card-activity-teachers">
+                                <h3 class="narrative-title text-teachers" style="color: #e74c3c;">My Teachers</h3>
+                                <p class="narrative-text">How can you show gratitude and respect to the teachers who dedicate their time to help you learn?</p>
+                                <div class="card-action-row" style="margin-bottom: 20px;">
+                                    <button class="color-btn btn-teachers" data-color-category="teachers">Color with Respect!</button>
+                                </div>
+                                <span class="back-link card-back-btn">← Back to Overview</span>
+                            </div>
+                            
+                            <!-- Card: Friends -->
+                            <div class="interactive-card" id="card-activity-friends">
+                                <h3 class="narrative-title text-friends" style="color: #e67e22;">My Friends</h3>
+                                <p class="narrative-text">How do you help your friends when they are sad, and how do you share smiles and fun together?</p>
+                                <div class="card-action-row" style="margin-bottom: 20px;">
+                                    <button class="color-btn btn-friends" data-color-category="friends">Color with Friendship!</button>
+                                </div>
+                                <span class="back-link card-back-btn">← Back to Overview</span>
+                            </div>
+
+                            <!-- Card: Celebration (Complete) -->
+                            <div class="interactive-card" id="card-activity-complete">
+                                <h3 class="narrative-title text-celebration" style="background: linear-gradient(to right, #ffe875, #ff8c00, #2ecc71, #00bfff, #9b59b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Beautifully Colored!</h3>
+                                <p class="narrative-text">Your stained glass window is fully shining with the light of God's love in your life! Sigue adelante (Go forward) and share this light with everyone you meet.</p>
+                                <div class="celtic-divider"></div>
+                                <p class="narrative-instruction">Scroll down to continue the interactive journey of faith.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: Go in Peace / Thank You -->
+        <section class="story-section" id="sec-7">
             <div class="section-bg-gradient" id="bg-ending"></div>
             <div class="section-content ending-content">
                 <div class="grid-layout">

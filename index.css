@@ -821,8 +821,201 @@ html, body {
     text-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 
+/* SECTION 6: Stained Glass Activity Styles */
+#bg-activity {
+    background: radial-gradient(circle at center, #1b072c 0%, var(--bg-dark) 85%);
+}
+
+#activity-glow {
+    background: radial-gradient(circle, rgba(155, 89, 182, 0.25) 0%, rgba(155, 89, 182, 0) 70%);
+}
+
+.glass-window-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+}
+
+.glass-window-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 12px solid #1c1511; /* Dark wood framing */
+    box-shadow: 
+        0 0 0 1px rgba(255,255,255,0.05),
+        0 0 0 3px var(--gold-dim),
+        0 20px 50px rgba(0,0,0,0.9),
+        inset 0 0 30px rgba(0,0,0,0.95);
+    background: #080102;
+    overflow: hidden;
+    z-index: 2;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-window-frame:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 
+        0 0 0 1px rgba(255,255,255,0.1),
+        0 0 0 4px var(--gold-bright),
+        0 25px 60px rgba(212, 175, 55, 0.25),
+        inset 0 0 20px rgba(0,0,0,0.8);
+}
+
+/* Glass segment base styling */
+.glass-segment {
+    fill: rgba(45, 45, 45, 0.65);
+    stroke: #160f12;
+    stroke-width: 4.5;
+    stroke-linejoin: round;
+    cursor: pointer;
+    transition: fill 0.6s ease, stroke 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+}
+
+/* Glass segment hover state */
+.glass-segment:hover {
+    fill: rgba(70, 70, 70, 0.85);
+    stroke: var(--gold-bright);
+    filter: drop-shadow(0 0 4px var(--gold-glow));
+}
+
+/* Class applied when a category is selected (focused) */
+.glass-segment.focused-category {
+    stroke: var(--gold-bright);
+    stroke-width: 6;
+    filter: drop-shadow(0 0 8px var(--gold-glow));
+    z-index: 10;
+}
+
+/* Coloring definitions mapped to radial gradients in SVG defs */
+.glass-segment.colored-home { fill: url(#grad-home); filter: drop-shadow(0 0 8px rgba(255, 179, 0, 0.45)); }
+.glass-segment.colored-school { fill: url(#grad-school); filter: drop-shadow(0 0 8px rgba(0, 168, 232, 0.45)); }
+.glass-segment.colored-pets { fill: url(#grad-pets); filter: drop-shadow(0 0 8px rgba(46, 204, 113, 0.45)); }
+.glass-segment.colored-church { fill: url(#grad-church); filter: drop-shadow(0 0 8px rgba(155, 89, 182, 0.45)); }
+.glass-segment.colored-teachers { fill: url(#grad-teachers); filter: drop-shadow(0 0 8px rgba(231, 76, 60, 0.45)); }
+.glass-segment.colored-friends { fill: url(#grad-friends); filter: drop-shadow(0 0 8px rgba(230, 126, 34, 0.45)); }
+
+/* SVG Text labels styling */
+.glass-text-label {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    fill: rgba(255, 255, 255, 0.4);
+    text-anchor: middle;
+    dominant-baseline: middle;
+    letter-spacing: 1px;
+    transition: fill 0.4s ease, font-size 0.4s ease, opacity 0.4s ease;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    opacity: 0.7;
+}
+
+.glass-text-label.center-label {
+    font-size: 15px;
+    fill: rgba(255, 255, 255, 0.55);
+}
+
+.glass-text-label.colored {
+    fill: var(--ivory-white);
+    opacity: 1;
+    font-size: 12px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6), 1px 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.glass-text-label.colored.center-label {
+    font-size: 17px;
+}
+
+/* Scoreboard style */
+.activity-scoreboard {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 10px 20px;
+    background: rgba(212, 175, 55, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 30px;
+    width: fit-content;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    animation: pulse-border 3s infinite ease-in-out;
+}
+
+.score-label {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    color: var(--ivory-muted);
+    letter-spacing: 1.5px;
+}
+
+.score-counter {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold-bright);
+    text-shadow: 0 0 6px var(--gold-glow);
+}
+
+/* Custom Interactive Coloring Buttons */
+.color-btn {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ivory-white);
+    background: transparent;
+    padding: 12px 28px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid var(--gold-dim);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    letter-spacing: 1.5px;
+}
+
+.btn-home { border-color: #ffd700; text-shadow: 0 0 4px rgba(255, 215, 0, 0.5); }
+.btn-home:hover { background: #ffe875; color: #1c0307; border-color: #ffd700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
+
+.btn-school { border-color: #00a8e8; text-shadow: 0 0 4px rgba(0, 168, 232, 0.5); }
+.btn-school:hover { background: #b3f0ff; color: #080102; border-color: #00a8e8; box-shadow: 0 0 15px rgba(0, 168, 232, 0.4); }
+
+.btn-pets { border-color: #2ecc71; text-shadow: 0 0 4px rgba(46, 204, 115, 0.5); }
+.btn-pets:hover { background: #a3ffb4; color: #0c0204; border-color: #2ecc71; box-shadow: 0 0 15px rgba(46, 204, 115, 0.4); }
+
+.btn-church { border-color: #9b59b6; text-shadow: 0 0 4px rgba(155, 89, 182, 0.5); }
+.btn-church:hover { background: #f5ccff; color: #1c0307; border-color: #9b59b6; box-shadow: 0 0 15px rgba(155, 89, 182, 0.4); }
+
+.btn-teachers { border-color: #e74c3c; text-shadow: 0 0 4px rgba(231, 76, 60, 0.5); }
+.btn-teachers:hover { background: #ffb3b3; color: #1c0307; border-color: #e74c3c; box-shadow: 0 0 15px rgba(231, 76, 60, 0.4); }
+
+.btn-friends { border-color: #e67e22; text-shadow: 0 0 4px rgba(230, 126, 34, 0.5); }
+.btn-friends:hover { background: #ffd5b3; color: #1c0307; border-color: #e67e22; box-shadow: 0 0 15px rgba(230, 126, 34, 0.4); }
+
+/* Celebration rainbow pattern animation for the SVG segments */
+@keyframes rainbow-glow {
+    0% { filter: drop-shadow(0 0 8px rgba(255, 232, 117, 0.6)) saturate(1.2); }
+    17% { filter: drop-shadow(0 0 8px rgba(0, 168, 232, 0.6)) saturate(1.2); }
+    33% { filter: drop-shadow(0 0 8px rgba(46, 204, 113, 0.6)) saturate(1.2); }
+    50% { filter: drop-shadow(0 0 8px rgba(155, 89, 182, 0.6)) saturate(1.2); }
+    67% { filter: drop-shadow(0 0 8px rgba(231, 76, 60, 0.6)) saturate(1.2); }
+    83% { filter: drop-shadow(0 0 8px rgba(230, 126, 34, 0.6)) saturate(1.2); }
+    100% { filter: drop-shadow(0 0 8px rgba(255, 232, 117, 0.6)) saturate(1.2); }
+}
+
+.stained-glass-celebration {
+    animation: rainbow-glow 8s infinite linear;
+}
+
+@keyframes pulse-border {
+    0%, 100% { border-color: rgba(212, 175, 55, 0.2); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+    50% { border-color: rgba(212, 175, 55, 0.5); box-shadow: 0 5px 25px rgba(212, 175, 55, 0.15); }
+}
+
 /* Responsive Scaling for Presentation Wrapper in Screen Sizes */
 @media (max-width: 768px) {
+    .glass-window-wrapper {
+        max-width: 320px;
+    }
     .grid-layout {
         flex-direction: column;
         gap: 30px;
